@@ -1,6 +1,6 @@
 # > Operator
 ## Definition
-* This is redirection. Redirection sends the output of a given command to another file that isn't "haha terminal output."
+* This is output redirection. Output redirection sends the output of a given command to another file that isn't "haha terminal output."
 ## Syntax 
 * [command] > [fileName]
 ## Example
