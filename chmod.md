@@ -5,3 +5,6 @@ This command changes the permissions on how someone can access a given file (can
 ```bash
 chmod ['u', 'g', or 'o' depending on which group you want to modify]=['r', 'w', or 'x' depending on the permission you want to modify] [file]
 ```
+```bash
+chmod u=r myFile
+```
