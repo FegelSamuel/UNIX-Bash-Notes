@@ -33,6 +33,8 @@ rm -f core $(PROG) $(OBJS)
 ## Action
 * An action that make carries out, usually a g++ compilation or linking command.
 * In make, commands are run and generate output just as if they were entered one by one into the UNIX prompt.
+## Macro-Variables
+* Basically you can assign a string to a variable so you can type a shorthand version for some really long file name.
 
 
 ```makefile
@@ -59,3 +61,13 @@ g++ -c database.cpp
 clean:
 rm -f core textr $(OBJS)
 ```
+
+# Comment Convention
+```makefile
+# At the top of your makefile script, talk about what your makefile is for. It should be only for one project
+# @Name: Samuel Sanming Ma
+# @Course: CS3377.501
+# @Date: 03/28/2024
+```
+
+
