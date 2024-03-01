@@ -21,6 +21,7 @@ database.o : database.h
         $(CC) $(CPPFLAGS) -c database.cpp
 clean:
         rm -f core $(PROG) $(OBJS)
+        # If you're wondering about what `core` means, it's basically if core dumps are enabled, a `core` file will be created to log crashes and stuff
 ```
 
 
