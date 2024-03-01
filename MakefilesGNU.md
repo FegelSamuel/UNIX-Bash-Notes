@@ -20,7 +20,7 @@ blurb.o :  blurb.h
 database.o : database.h
         $(CC) $(CPPFLAGS) -c database.cpp
 clean:
-rm -f core $(PROG) $(OBJS)
+        rm -f core $(PROG) $(OBJS)
 ```
 
 
