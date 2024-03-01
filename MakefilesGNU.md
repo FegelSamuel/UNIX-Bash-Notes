@@ -48,19 +48,6 @@ target ... : prerequisites ...
 
 * A `make` call executes the first rule by default. For other rules, type `make <target>`
 
-```makefile
-OBJS = main.o blurb.o database.o
-textr :
-$(OBJS)
-g++ -o textr $(OBJS) main.o :
-blurb.o
-g++ -c main.cpp : blurb.h
-g++ -c blurb.cpp
-database.o : database.h
-g++ -c database.cpp
-clean:
-rm -f core textr $(OBJS)
-```
 
 # Comment Convention
 ```makefile
