@@ -23,3 +23,43 @@ You can also run `chmod 100` on `test` to make it executable (1~~ can be any odd
 |$?| Contains exit status of last command |
 |$*| Contains all command line parameters |
 |$$| Contains PID of executing process |
+
+```bash
+#  BOX
+# Sample program to show the shell variables
+echo                      # skip a line
+echo "This script's name is $0 and here is its output: "
+echo "Total number of command line arguments: $#"
+echo "The first parameter is $1"
+echo "The second parameter is $2"
+echo "This is a list of all the parameters: $* "
+echo
+```
+
+```bash
+# kb_read
+# Sample program to show read command
+
+echo                      # skip a line
+echo "Enter your name:\c" # fake prompt
+read name                 # actual prompt, stores keyboard input into label named "name"
+echo "Your name is $name" # output
+echo                      # skip a line
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
