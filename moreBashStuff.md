@@ -111,6 +111,15 @@ fi
 ```
 As a reminder, arguments are what's passed in when a function is called and parameters are defined in the funtion definition
 
+# Numerical Boolean operations
+| Operator |  Example                                        |        Meaning           |
+|----------|-------------------------------------------------|--------------------------|
+|-eq|number1 -eqnumber2 | Are these two numbers equal? |
+|-ne|number1 -nenumber2 | Are these two numbers not equal? |
+|-gt|number1 -gtnumber2 | number1 > number2 | 
+|-ge|number1 -genumber2 | number1 >= number2 |
+|-lt|number1 -ltnumber2 | number1 < number2 |
+|-le|number1 -lenumber2 | number2 <= number1 |
 
 
 
