@@ -12,7 +12,7 @@ sh test
 bash test
 ```
 `who | wc -l` will run in the terminal
-You can also run `chmod 100` on `test` to make it executable (1~~ can be any odd octal number) 
+You can also run `chmod 100` on `test` to make it executable with `./` (1~~ can be any odd octal number) 
 
 | Variable |          Meaning                                |
 |----------|-------------------------------------------------|
@@ -34,6 +34,16 @@ echo "The first parameter is $1"
 echo "The second parameter is $2"
 echo "This is a list of all the parameters: $* "
 echo
+```
+
+In the command line, I can type: `BOX IS EMPTY`
+The output will be:
+```txt
+This script's name is BOX and here is its output:
+Total number of command line arguments: 2
+The first parameter is IS
+The second parameter is EMPTY
+This is a list of all the parameters: IS EMPTY 
 ```
 
 ```bash
