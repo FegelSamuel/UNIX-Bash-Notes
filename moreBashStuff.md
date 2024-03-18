@@ -57,13 +57,59 @@ echo "Your name is $name" # output
 echo                      # skip a line
 ```
 
-
-
-
-
-
-
-
+# If Statements
+If you have done any scripting language before, this is not scary
+```bash
+if [ condition ]  # Just like a C++ if statement
+then              # YOU NEED THE THEN AFTER YOUR IF
+  true-commands
+  ...
+  last-true-command
+else                 # just like a C++ else
+  false-commands
+  ...
+  last-false-commands 
+fi                    # if backwards to close out the if statement
+```
+```bash
+if [ condition ]
+then
+  commands
+  ...
+  last_command
+fi
+```
+```bash
+if [ condition ]
+then
+  commands
+  ...
+  last_command
+elif [ condition ]
+then
+  commands
+  ...
+  last_command
+else
+  else_command
+fi
+```
+## Example
+```bash
+# svi3
+# Save and invoke vi
+# Sample program
+DIR=$HOME/keep
+if [ $# = 1 ] # I want only one argument passed in because a filepath contains one string
+then
+  cp $1 $DIR  # copy inputted file into the directory
+  vi $1       # call vi on inputted file
+else          # If I have more or less than 1, the user input the filepath wrong or didn't put an input
+  echo "You need exclusively one argument to run this script! Number of arguments you passed: $#
+  echo
+fi
+```
+As a reminder, arguments are what's passed in when a function is called and parameters are defined in the funtion definition
 
 
 
