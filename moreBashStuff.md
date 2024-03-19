@@ -111,7 +111,7 @@ fi
 ```
 As a reminder, arguments are what's passed in when a function is called and parameters are defined in the funtion definition
 
-# Numerical Boolean operations
+# Numerical Boolean Operations
 | Operator |  Example                                        |        Meaning           |
 |----------|-------------------------------------------------|--------------------------|
 |-eq|number1 -eqnumber2 | Are these two numbers equal? |
@@ -121,10 +121,38 @@ As a reminder, arguments are what's passed in when a function is called and para
 |-lt|number1 -ltnumber2 | number1 < number2 |
 |-le|number1 -lenumber2 | number2 <= number1 |
 
+```bash
+if [$1 -eq $2]
+then
+  echo
+  echo "Your inputs are equal"
+  echo
+else
+  echo
+  echo "Your inputs are not equal"
+  echo
+fi
+```
 
-
-
-
-
-
+# String Operations
+| Operator |  Example                                        |        Meaning           |
+|----------|-------------------------------------------------|--------------------------|
+|=|string1=string2|Check for equality|
+|!=|string1!=string2|Does string1 **not** match string2?|
+|-n|-n str|Does str contain a *nonzero* length of numbers|
+|-z|-z str|Does str contain *zero* chars (is string empty)?|
+Regarding strings, we need to use the `test` command
+```bash
+# Date Checker
+DATE1= `date`
+DATE2= `date`
+if test "$DATE1" = "$DATE2"
+then
+  echo "STOP! The computer clock is dead!"
+  echo
+else
+  echo "Everything is fine"
+  echo
+fi
+```
 
