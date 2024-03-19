@@ -11,8 +11,8 @@ sh test
 ```bash
 bash test
 ```
-`who | wc -l` will run in the terminal
-You can also run `chmod 100` on `test` to make it executable with `./` (1~~ can be any odd octal number) 
+- `who | wc -l` will run in the terminal
+- You can also run `chmod 100` on `test` to make it executable with `./` (1~~ can be any odd octal number) 
 
 | Variable |          Meaning                                |
 |----------|-------------------------------------------------|
