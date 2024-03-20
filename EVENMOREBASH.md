@@ -14,3 +14,4 @@ This command changes your prompt with its environment variable
 ```bash
 PS1="{/h:/d:/w}" # Host Name:Date:Working Directory
 ```
+
