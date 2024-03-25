@@ -101,3 +101,25 @@ return (0);
   * Returns two descriptors
       * first for reading
       * second for writing
+  * Think of pipes as a multivalue variable
+* A special file/buffer that stores a limited amount of data in a FIFO manner
+* Pipes are commonly used from within shells to connect the stdout of one utility to the stdin of another
+```bash
+ps -ef | grep "3376"
+```
+* See the `|` I used? `ps -ef` is its own process and `grep "3376"` is its own process
+## Pipe synchronization
+* If a process tries to write to a full pipe, it is blocked until the reader process consumes some data
+* If a process tries to read from an empty pipe, it is blocked until the writer produces some data
+## Types of Pipes
+### Unnamed Pipes
+* Used only with related processes
+* Parent/child
+* Child/child
+* The pipe exists only as long as the processes using it are alive
+### Named pipes
+* Actually exist as directory entries (`ls` will show them)
+* Have file access permissions (`chmod` required? hope not, can be done in the API)
+* Can be used by unrelated processes
+## READ/WRITE
+* Data is written to and read from the pipe using the unbuffered system calls `write` and `read`
