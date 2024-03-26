@@ -85,7 +85,7 @@ int main(void) {
     printf("%d: This is the child process.\n", childpid);
     exit(0);
   }
-  else { // parent pushed down in stack, it should be 1 (i think)
+  else { // parent process is some positive integer
     // read in string from pipe
     printf("%d: This is the child process.\n", childpid);
     exit(0);
