@@ -123,3 +123,21 @@ ps -ef | grep "3376"
 * Can be used by unrelated processes
 ## READ/WRITE
 * Data is written to and read from the pipe using the unbuffered system calls `write` and `read`
+
+```C
+#include <stdio.h>
+#include <unistd.h>
+int main(void)
+{
+   char    string[] = "Hello!\n";
+   char    readbuffer[80];
+   int fd[2];
+   pipe(fd);
+   write(fd[1], string, (strlen(string)+1));
+   nbytes = read(fd[0], readbuffer,   sizeof(readbuffer));
+   printf("Received string: %s", readbuffer);
+}
+```
+
+
+
