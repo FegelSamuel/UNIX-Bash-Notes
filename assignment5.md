@@ -46,3 +46,21 @@ return(0);
  
 }
 ```
+Here is how to make two children from one parent
+```C
+pid_t child_a, child_b;
+
+child_a = fork();
+
+if (child_a == 0) {
+    /* Child A code */
+} else {
+    child_b = fork();
+
+    if (child_b == 0) {
+        /* Child B code */
+    } else {
+        /* Parent Code */
+    }
+}
+```
