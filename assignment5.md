@@ -64,3 +64,9 @@ if (child_a == 0) {
     }
 }
 ```
+I want to make multiple pipes
+```C
+int pipes[4]; // index 0 and 1 are read and write respectively. index 2 and 3 are read and write respectively (belonging to the second pipe)
+pipe(pipes);
+```
+
