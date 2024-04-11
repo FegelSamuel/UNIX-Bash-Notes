@@ -44,7 +44,7 @@ int main(void)
   fork();
   printf("s2\n"); // runs twice
   fork();
-  printf("s3"\n"); // runs four times
+  printf("s3\n"); // runs four times
 ```
 ## Output
 ```bash
