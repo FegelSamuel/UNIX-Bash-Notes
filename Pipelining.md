@@ -5,6 +5,7 @@
 ### Four loads
   Speedup 8/3.5 = 2.3
 ## Five stages and five steps
+* One stage is one clock cycle
 ### IF: Instruction fetch from memory
 ### ID: Instruction decode and register read
 ### EX: Execute operation or calculate address
