@@ -29,6 +29,7 @@
 <br>
 
 # The C Code Part
+## Making a Socket
 ```C
 int s = socket(domain, type, protocol);
 // s: socket descriptor is an int (like file-handle)
@@ -37,10 +38,46 @@ int s = socket(domain, type, protocol);
 // protocol: usually set to 0; specifies protocol (ssh is 22)
 ```
 **NOTE:	socket	call	does	not	specify	where	data	will	be	coming	from,	nor	where	it	will	be	going	to	–	it	just	creates	the	interface!**
-* 
-
-
-
+## Associating and (may exclusively) reserving a port for use by a Socket
+```C
+int status = bind(sockid, &addrport, size);
+// size: Size in bytes of the addrport struct
+// sockaddr: struct sockaddr,	the	(IP)	address	and	port	of	the	machine	(address	usually	set	to	INADDR_ANY –	chooses	a	local	address)	
+// sockid:	integer,	socket	descriptor	(In the previous code, that is the int s)
+// status: Any integer; will return -1 if failed
+```
+You can actually skip doing this bind stuff if: 
+<br>
+**SOCK_DGRAM**: When sending information, we don't need to bind anything. The Operating System handles that for us
+<br>
+***YOU WILL STILL NEED TO BIND WHEN USING SOCK_DGRAM AND RECIEVING INFORMATION***
+<br>
+**SOCK_STREAM**: Destination	determined	during	connection	setup
+<br>
+Don’t	need	to	know	port	sending	from	(during	connection	setup,	receiving	end	is	informed	of	port)
+## Connection Setup
+### Listening
+Listeners are non-blocking, so they will return immediately
+```C
+int status = listen(sock, queuelen);
+// status is 0 if listening, -1 if error
+// sock: int, socket descriptor (with respect to the previous code, s is what we would be passing in)
+// queuelen: Queue Length, integer,	number	of	active	participants	that	can	“wait”	for	a	connection in a line
+```
+### Accepting
+Accepts are blocking, so they will wait until returning
+```C
+int s = accept(sock, &name, &namelen);
+// s:	integer,	the	new	socket	(used	for	data-transfer)
+// sock:	integer,	the	orig.	socket	(being	listened	on)
+// name:	struct sockaddr,	address	of	the	active	participant
+// namelen:	sizeof(name):	value/result	parameter; YOU NEED TO APPROPRIATELY SET THIS BEFORE CALLING THE ACCEPT FUNCTION; It's adjusted by the OS when returning (that's why we are passing by ref)
+```
+### Connect
+```C
+int status = connect(sock, &name, namelen);
+```
+lol my computer died
 
 
 
