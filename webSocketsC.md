@@ -20,4 +20,5 @@
 <div>
 Once configured, the application	can	pass	data	to	the	socket	for	network	transmission receive	data	from	the	socket	(transmitted	through	the	network	by	some	other	host)
 </div>
-![image](https://github.com/FegelSamuel/UNIX-Bash-Notes/assets/126997597/7beef580-253e-4846-a00b-109622d235f5)
+
+![image](https://github.com/FegelSamuel/UNIX-Bash-Notes/assets/126997597/7beef580-253e-4846-a00b-109622d235f5 "Two Main Types of Sockets")
