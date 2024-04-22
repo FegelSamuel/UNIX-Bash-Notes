@@ -97,7 +97,7 @@ int status = connect(sock, &name, namelen); // THIS IS BLOCKING
 // sock = int, socket to be used in connection
 // name = struct sockaddr, address of PASSIVE participant
 ```
-## With a Connection (SOCK_STREAM)
+## Sending and Receiving Data With a Connection (SOCK_STREAM)
 **TCP**
 ```C
 int count = send(sock, &buf, len, flags);
@@ -108,9 +108,15 @@ int count = send(sock, &buf, len, flags);
 ```
 ```C
 int count = recv(sock, &buf, len, flags);
-// will finish this later
+/*
+count:	#	bytes	received	(-1	if	error)	
+buf:	void[],	stores	received	bytes	
+len:	#	bytes	received	
+flags:	integer,	special	options,	usually	just	0
+*/
 ```
 ## Without a Connection (SOCK_DRAGRAM)
+**UDP**
 ```C
 int count = sendto(sock, &buf, len, flags, &addr, addrlen);
 // count, sock, buf, len, and flags are all the same
@@ -119,9 +125,21 @@ int count = sendto(sock, &buf, len, flags, &addr, addrlen);
 ```
 ```C
 int count = recvfrom(sock, &buf, len, flags, &addr, &addrlen);
+// same as previous
 // name: struct sockaddr, address of the source
 // namelen: `sizeof(name)` (this returns name's size in bytes)
 ```
+## Closing your Socket Connection
+Remember in your lower level C Family classes that having memory leaks is bad. Leaking a socket is also bad, so you have to close it.
+```C
+int status = close(s);
+// status is 0 if successful, -1 if error
+// s: socket being closed
+```
+* This closes a connection (in TCP)
+* Frees up the `port` used by socket
+
+
 # FDT (file descriptor table)
 | Number | Meaning |
 |--------|---------|
