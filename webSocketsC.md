@@ -29,6 +29,7 @@
 <br>
 
 # Connection Conceptual Stuff
+### Important Note: If you get the relationship between Client and Server, you should understand this. If not, let me know so I can fix the problem.
 ## Active Participant
 * Initiates conversation between machines
 ## Passive Participant
@@ -40,11 +41,27 @@
 
 ![Connection Setup](https://github.com/FegelSamuel/UNIX-Bash-Notes/assets/126997597/b384ecf5-0f7f-49a7-ae55-37e249329fb9)
 
-
+## Order
+1. **Passive Participant** `listens` for incoming requests
+2. **Active Participant** `connects` or attempts to connect to the **Passive Participant**
+3. **Passive Participant** `accepts` the incoming request
+4. **Passive Participant** facilitates `data transfer`
 
 # The C Code Part
+## struct sockaddr
+```C
+struct sockaddr { 
+u_short sa_family; // unsigned short 
+char sa_data[14]; // char array or pointer of 14 bytes
+};
+```
+– sa_family		
+ * specifies	which	address	
+family	is	being	used
+ * determines	how	the	remaining	14	bytes	are	used
+
 ## Making a Socket (VERY IMPORTANT!!!!!)
-This is the first thing you will ever do will require a Socket
+This is the first thing you will ever do in Networking
 ```C
 int s = socket(domain, type, protocol);
 // s: socket descriptor is an int (like file-handle)
