@@ -28,6 +28,20 @@
 
 <br>
 
+# Connection Conceptual Stuff
+## Active Participant
+* Initiates conversation between machines
+## Passive Participant
+* Is the receiving end (can still send stuff, just didn't start the interaction)
+* **Passive Participant** must `bind` and `listen` before the **Active Participant** issues a `connect`. Then, the **Passive Participant** can `accept` the connection request. If that does happen, `data transfer` can occur.
+* The accepted connection is on a new socket
+* The old socket continues to listen for other active participants
+
+
+![Connection Setup](https://github.com/FegelSamuel/UNIX-Bash-Notes/assets/126997597/b384ecf5-0f7f-49a7-ae55-37e249329fb9)
+
+
+
 # The C Code Part
 ## Making a Socket
 ```C
@@ -55,6 +69,7 @@ You can actually skip doing this bind stuff if:
 **SOCK_STREAM**: Destination	determined	during	connection	setup
 <br>
 Don’t	need	to	know	port	sending	from	(during	connection	setup,	receiving	end	is	informed	of	port)
+<br>
 ## Connection Setup
 ### Listening
 Listeners are non-blocking, so they will return immediately
@@ -75,9 +90,10 @@ int s = accept(sock, &name, &namelen);
 ```
 ### Connect
 ```C
-int status = connect(sock, &name, namelen);
+int status = connect(sock, &name, namelen); // THIS IS BLOCKING
+// status = 0 if successful
 ```
-lol my computer died
+
 
 
 
