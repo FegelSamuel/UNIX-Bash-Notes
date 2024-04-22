@@ -43,7 +43,8 @@
 
 
 # The C Code Part
-## Making a Socket
+## Making a Socket (VERY IMPORTANT!!!!!)
+This is the first thing you will ever do will require a Socket
 ```C
 int s = socket(domain, type, protocol);
 // s: socket descriptor is an int (like file-handle)
@@ -72,27 +73,61 @@ Don’t	need	to	know	port	sending	from	(during	connection	setup,	receiving	end	i
 <br>
 ## Connection Setup
 ### Listening
-Listeners are non-blocking, so they will return immediately
+Listeners are **non-blocking**, so they will return immediately
 ```C
 int status = listen(sock, queuelen);
 // status is 0 if listening, -1 if error
 // sock: int, socket descriptor (with respect to the previous code, s is what we would be passing in)
-// queuelen: Queue Length, integer,	number	of	active	participants	that	can	“wait”	for	a	connection in a line
+// queuelen: Queue Length, integer,	number	of	ACTIVE	participants	that	can	“wait”	for	a	connection in a line
 ```
 ### Accepting
-Accepts are blocking, so they will wait until returning
+Accepts are **blocking**, so they will wait for a *connection* until returning
 ```C
 int s = accept(sock, &name, &namelen);
 // s:	integer,	the	new	socket	(used	for	data-transfer)
 // sock:	integer,	the	orig.	socket	(being	listened	on)
-// name:	struct sockaddr,	address	of	the	active	participant
+// name:	struct sockaddr,	address	of	the	ACTIVE participant
 // namelen:	sizeof(name):	value/result	parameter; YOU NEED TO APPROPRIATELY SET THIS BEFORE CALLING THE ACCEPT FUNCTION; It's adjusted by the OS when returning (that's why we are passing by ref)
 ```
 ### Connect
+Connect is **blocking**
 ```C
 int status = connect(sock, &name, namelen); // THIS IS BLOCKING
-// status = 0 if successful
+// status = 0 if successful, -1 otherwise
+// sock = int, socket to be used in connection
+// name = struct sockaddr, address of PASSIVE participant
 ```
+## With a Connection (SOCK_STREAM)
+**TCP**
+```C
+int count = send(sock, &buf, len, flags);
+// count: Number of BYTES transmitted (-1 if error)
+// buf: char[] or char*, buffer to be transmitted, this is a C-String
+// len: integer, length of buffer in BYTES to transmit
+// flags : integer, special options like the -f we use in Bash's "rm -f <file>", usually just 0
+```
+```C
+int count = recv(sock, &buf, len, flags);
+// will finish this later
+```
+## Without a Connection (SOCK_DRAGRAM)
+```C
+int count = sendto(sock, &buf, len, flags, &addr, addrlen);
+// count, sock, buf, len, and flags are all the same
+// addr: struct sockaddr, address of the DESTINATION
+// addrlen: sizeof(addr)
+```
+```C
+int count = recvfrom(sock, &buf, len, flags, &addr, &addrlen);
+// name: struct sockaddr, address of the source
+// namelen: `sizeof(name)` (this returns name's size in bytes)
+```
+# FDT (file descriptor table)
+| Number | Meaning |
+|--------|---------|
+|0|stdin|
+|1|stdout|
+|2|stderr|
 
 
 
