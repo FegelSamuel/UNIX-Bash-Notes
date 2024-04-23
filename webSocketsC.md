@@ -126,10 +126,10 @@ int count = send(sock, &buf, len, flags);
 ```C
 int count = recv(sock, &buf, len, flags);
 /*
-count:	#	bytes	received	(-1	if	error)	
-buf:	void[],	stores	received	bytes	
-len:	#	bytes	received	
-flags:	integer,	special	options,	usually	just	0
+count: number of bytes	received	(-1	if	error)	
+buf: void[],	stores	received	bytes	
+len: number of bytes	received	
+flags: int,	special	options,	usually	just	0
 */
 ```
 ## Without a Connection (SOCK_DRAGRAM)
