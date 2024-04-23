@@ -1,6 +1,6 @@
 # Websockets in General
 # Sockets
-## An	interface	between	application	and	network	
+## An	interface	between	application	and	network	(Could be considered an API lol)
   * The	application	creates	a	socket	
   * The	socket	type	dictates	the	style	of communication
 ### Reliable	vs.	Best	Effort
