@@ -127,7 +127,7 @@ int count = send(sock, &buf, len, flags);
 int count = recv(sock, &buf, len, flags);
 /*
 count: number of bytes received (-1 if error)
-buf: void[],	stores received bytes	
+buf: void[], stores received bytes	
 len: number of bytes received	
 flags: int, special options, usually just 0
 */
