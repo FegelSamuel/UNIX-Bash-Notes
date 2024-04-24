@@ -62,6 +62,20 @@ Machines can use different ways to represent numbers. For example, Big-Endian op
 * We will get to the C Code on how to achieve this later.
 
 # The C Code Part
+## Includes
+These `#include` calls are in `C++`, not `C`
+```C
+#include <stdio.h>
+#include <netdb.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdlib.h>
+```
 ## struct sockaddr
 ```C
 struct sockaddr { 
