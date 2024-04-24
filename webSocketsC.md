@@ -28,6 +28,12 @@
 
 <br>
 
+# UDP
+![UDP](https://github.com/FegelSamuel/UNIX-Bash-Notes/assets/126997597/0e1e2fc1-fbb5-466e-87ad-31b8fee6c0b3)
+
+# TCP
+![TCP](https://github.com/FegelSamuel/UNIX-Bash-Notes/assets/126997597/cfd3ed1d-4cd4-48bd-85a2-6e063900ee36)
+
 # Connection Conceptual Stuff
 ### Important Note: If you get the relationship between Client and Server, you should understand this. If not, let me know so I can fix the problem.
 ## Active Participant
@@ -47,12 +53,20 @@
 3. **Passive Participant** `accepts` the incoming request
 4. **Passive Participant** facilitates `data transfer`
 
+## Little Endian vs. Big Endian
+### Problem
+Machines can use different ways to represent numbers. For example, Big-Endian operating systems can be speaking with Little Endian operating systems, but the address 127.0.0.3 on Big-Endian will be represented as 3.0.0.127, which we don't want. 
+### Network Byte-Ordering
+* To avoid the problem, the Network will always use Big-Endian to represent bytes.
+* Words sent through the network should be converted to _Network Byte-Order_ **prior** to transmission and back to _Host Byte-Order once received_.
+* We will get to the C Code on how to achieve this later.
+
 # The C Code Part
 ## struct sockaddr
 ```C
 struct sockaddr { 
-u_short sa_family; // unsigned short 
-char sa_data[14]; // char array or pointer of 14 bytes
+ u_short sa_family; // unsigned short 
+ char sa_data[14]; // char array or pointer of 14 bytes
 };
 ```
 – sa_family		
@@ -60,13 +74,38 @@ char sa_data[14]; // char array or pointer of 14 bytes
 family	is	being	used
  * determines	how	the	remaining	14	bytes	are	used
 
+## struct sockaddr_in
+```C
+struct sockaddr { // This Socket Address is Internet-Specific
+ short sin_family
+ u_short sin_port;
+ struct in_addr sin_addr;
+ char sin_zero[8];
+};
+```
+- sin_family = AF_NET
+- sin_port: port number (like how port number 22 is reserved for ssh)
+- sin_addr: IP-address
+- sin_zero: unused (?)
+
+## Address and Port Byte-Ordering
+* Addresses and Ports are stored as `int`
+  * `u_short sin_port` (16 bits)
+  * `in_addr sin_addr` (32 bits)
+```C
+struct in_addr {
+ u_long s_addr;
+};
+```
+
+
 ## Making a Socket (VERY IMPORTANT!!!!!)
 This is the first thing you will ever do in Networking
 ```C
 int s = socket(domain, type, protocol);
 // s: socket descriptor is an int (like file-handle)
 // domain: int variable, communication domain. Generally, we are going to use IPV4 (it's dated because IPV6 but some systems still use it)
-// type: either SOCK_STREAM or SOCK_DGRAM
+// type: either `SOCK_STREAM` or `SOCK_DGRAM`
 // protocol: usually set to 0; specifies protocol (ssh is 22)
 ```
 **NOTE:	socket	call	does	not	specify	where	data	will	be	coming	from,	nor	where	it	will	be	going	to	–	it	just	creates	the	interface!**
@@ -155,6 +194,15 @@ int status = close(s);
 ```
 * This closes a connection (in TCP)
 * Frees up the `port` used by socket
+
+## Byte-Ordering Functions
+On _Big-Endians_, these functions do `nothing`. On _Little-Endians_, these functions `reverse` the byte order.
+```C
+u_long htonl(u_long x);
+u_short htons(u_short x);
+u_long ntohl(u_long x);
+u_short ntohs(u_short x);
+```
 
 
 # FDT (file descriptor table)
