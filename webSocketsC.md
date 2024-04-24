@@ -203,6 +203,54 @@ u_short htons(u_short x);
 u_long ntohl(u_long x);
 u_short ntohs(u_short x);
 ```
+## select()
+So a lot of the functions we saw will block until some event is seen.
+<br>
+- `accept` blocks until a `connection` arrives
+- `connect` will block until it's establish
+- `recv` and `recvfrom` block until a packet of data is received
+- `send` and `sendto` block until data is pushed into the socket's buffer
+<br>
+For simple programs, blocking is convenient, but servers are expected to have multiple clients at once with simultaneous sending and receiving.
+
+<br>
+
+While there are many solutions to the issue, for the scope of this class, we will use the `select` function call.
+
+<br>
+
+`select` can be permanently blocking, time-limited blocking, or completely non-blocking.
+* Input: A set of file-descriptors
+* Output: Information on the file descriptors' status
+It's like a _watch_ function that looks at file descriptors
+
+```C
+int status = select(nfds, &readfds, &writefds, &exceptfds, &timeout);
+/*
+status: This is the number of ready objects (how many of them are ready for reading or writing?), -1 if error
+ndfs = 1 + (largest file descriptor to check)
+readfds: list of descriptors to check if read-ready
+writefds: list of descriptors to check if write-ready
+exceptfds: list of descriptors to check if an exception is registered
+timeout: time after which select returns, even if nothing ready - can be 0 or infinity (will be pointing to NULL for infinity)
+*/
+```
+Recall that `select` uses `struct fd_set`
+- Thankfully, it's just a `bit-vector`
+- If bit `i` is set in [readfds, writefds, exceptfds], select will check if file descriptor (i.e. socket) `i` is ready for [reading, writing, exception]
+
+<div>
+ Before calling `select`:
+  - FD_ZERO(&fdvar): clears struct
+  - FD_SET(i, &fdvar): checks file descriptor `i`
+</div>
+
+After calling `select`:
+- int FD_ISSET(i, &fdvar): boolean returns `TRUE` if and only if `i` is "ready"
+
+<br>
+
+
 
 
 # FDT (file descriptor table)
@@ -211,7 +259,7 @@ u_short ntohs(u_short x);
 |0|stdin|
 |1|stdout|
 |2|stderr|
-
+|3|After 3, you can assign meaning yourself, depending on what the fd table already looks like|
 
 
 
