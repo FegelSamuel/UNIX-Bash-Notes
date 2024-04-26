@@ -156,8 +156,8 @@ Accepts are **blocking**, so they will wait for a *connection* until returning
 int s = accept(sock, &name, &namelen);
 // s:	integer,	the	new	socket	(used	for	data-transfer)
 // sock:	integer,	the	orig.	socket	(being	listened	on)
-// name:	struct sockaddr,	address	of	the	ACTIVE participant
-// namelen:	sizeof(name):	value/result	parameter; YOU NEED TO APPROPRIATELY SET THIS BEFORE CALLING THE ACCEPT FUNCTION; It's adjusted by the OS when returning (that's why we are passing by ref)
+// name: struct sockaddr,	address	of	the	ACTIVE participant
+// namelen: sizeof(name): value/result parameter; YOU NEED TO APPROPRIATELY SET THIS BEFORE CALLING THE ACCEPT FUNCTION; It's adjusted by the OS when returning (that's why we are passing by ref)
 ```
 ### Connect
 Connect is **blocking**
