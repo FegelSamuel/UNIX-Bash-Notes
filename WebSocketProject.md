@@ -12,3 +12,29 @@ minimum, there must be one port number specified. Here's the required command-li
 (arguments between [] are optional): 
 $> echo_s <port1> [<port2> <port3>]
 `well-known`: The server specifies the port number being used by having port1 and port2 and port3
+
+# nc
+nc is used as echo server
+```bash
+nc -e /bin/cat -k -u -l 1235
+```
+nc is used as echo client
+```bash
+nc -u 127.0.0.1 1235
+```
+Let's say you want to set up a simple server that listens on port 12345 and echoes back any message it receives. You can achieve this using nc in listen mode (-l) with the -p option to specify the port:
+```bash
+nc -l -p 12345
+```
+Now, your server is listening on port 12345.
+
+<br>
+
+To connect to this server from another terminal or machine, you can use nc in another terminal in client mode. You need to specify the IP address of the server and the port it's listening on:
+```bash
+nc <server_ip> 12345
+```
+
+
+
+
